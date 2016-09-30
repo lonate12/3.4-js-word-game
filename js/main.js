@@ -59,13 +59,16 @@ document.getElementById('start-button').addEventListener('click', generatePlayin
 // This is the generatePlayingScreen function that will take the randomWord, find
 // it's length, and create <span> tags for each letter with a class equal to the
 // letter that will occupy that <span>.
+var randomWord;
 
 function generatePlayingScreen(){
-  var randomWord = generateRandomWord(filteredWords).split('');
+  randomWord = generateRandomWord(filteredWords).split('');
+
+  while(wordToGuessDiv.lastChild){
+    wordToGuessDiv.removeChild(wordToGuessDiv.lastChild);
+  }
 
   startButtonHandle.textContent = 'Give me a new word';
-
-  console.log(randomWord);
 
   randomWord.forEach(function(letter){
     var newSpan = document.createElement('span');
@@ -74,11 +77,20 @@ function generatePlayingScreen(){
     wordToGuessDiv.appendChild(newSpan);
   });
 
-  inputHandle.addEventListener('');
-
-
+  inputHandle.addEventListener('keydown', checkInput);
+  return randomWord;
 }
 
+// checkInput function that will iterate through the letters of the array and
+// check to see if the key pressed matches any of the letters in the word.
+
+function checkInput(event){
+  console.log(event.key);
+}
+  // randomWord.forEach(function(letter, index){
+//   //   if(keydownInput == letter){}else{}
+//   }
+// }
 
 
 
