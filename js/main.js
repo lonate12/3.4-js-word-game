@@ -1,1 +1,63 @@
-alert('Hello');
+(function(){
+'use strict';
+
+// Here are the 100 most popular words in English, as totally
+// stolen from here: https://gist.github.com/gravitymonkey/2406023
+var commonWords = [
+  "the","of","and","a","to","in","is","you","that","it","he",
+  "was","for","on","are","as","with","his","they","I","at","be",
+  "this","have","from","or","one","had","by","word","but","not",
+  "what","all","were","we","when","your","can","said","there",
+  "use","an","each","which","she","do","how","their","if","will",
+  "up","other","about","out","many","then","them","these","so",
+  "some","her","would","make","like","him","into","time","has",
+  "look","two","more","write","go","see","number","no","way",
+  "could","people","my","than","first","water","been","call",
+  "who","oil","its","now","find","long","down","day","did","get",
+  "come","made","may","part"
+];
+
+// This is a test funciton for testing event listeners.
+
+function test(){
+  alert('Hey');
+}
+
+var wordToGuessDiv = document.getElementById('word-to-guess');
+
+// First I'm filtering the array to create an array with words that have
+// tree letters or more.
+
+var filteredWords = commonWords.filter(function(words){
+  return words.length >= 3;
+});
+
+console.log(filteredWords);
+
+// Next, we're generating a random word from the new array with words of 3 letters
+// or more.
+
+var randomWord = filteredWords[(Math.floor(Math.random() * filteredWords.length))];
+
+console.log(randomWord);
+
+// Now, I'm going to tie an event listener to a 'start button' that will let us
+// know when the player clicks the start button.
+
+document.getElementById('start-button').addEventListener('click', generatePlayingScreen);
+
+// This is the generatePlayingScreen function that will take the randomWord, find
+// it's length, and create <span> tags for each letter with a class equal to the
+// letter that will occupy that <span>.
+
+function generatePlayingScreen(randomWord){
+  randomWord.forEach(function(letters){
+  var newSpan = document.createElement('span');
+
+  });
+}
+
+
+
+
+}());
