@@ -23,7 +23,11 @@ function test(){
   alert('Hey');
 }
 
+// Handles to document elements
+
 var wordToGuessDiv = document.getElementById('word-to-guess');
+var startButtonHandle = document.getElementById('start-button');
+var inputHandle = document.getElementById('input-field');
 
 // First I'm filtering the array to create an array with words that have
 // tree letters or more.
@@ -32,14 +36,20 @@ var filteredWords = commonWords.filter(function(words){
   return words.length >= 3;
 });
 
-console.log(filteredWords);
+// console.log(filteredWords); Testing to make sure the correct array was returned.
 
 // Next, we're generating a random word from the new array with words of 3 letters
 // or more.
 
-var randomWord = filteredWords[(Math.floor(Math.random() * filteredWords.length))];
+// var randomWord = filteredWords[(Math.floor(Math.random() * filteredWords.length))];
 
-console.log(randomWord);
+function generateRandomWord(array){
+  var randomWord = array[(Math.floor(Math.random() * filteredWords.length))];
+  return randomWord;
+}
+
+// console.log(generateRandomWord(filteredWords)); Testing that generateRandomWord
+// returned what I expected.
 
 // Now, I'm going to tie an event listener to a 'start button' that will let us
 // know when the player clicks the start button.
@@ -50,11 +60,23 @@ document.getElementById('start-button').addEventListener('click', generatePlayin
 // it's length, and create <span> tags for each letter with a class equal to the
 // letter that will occupy that <span>.
 
-function generatePlayingScreen(randomWord){
-  randomWord.forEach(function(letters){
-  var newSpan = document.createElement('span');
+function generatePlayingScreen(){
+  var randomWord = generateRandomWord(filteredWords).split('');
 
+  startButtonHandle.textContent = 'Give me a new word';
+
+  console.log(randomWord);
+
+  randomWord.forEach(function(letter){
+    var newSpan = document.createElement('span');
+    newSpan.className = letter +' word';
+    // newSpan.textContent = letter;
+    wordToGuessDiv.appendChild(newSpan);
   });
+
+  inputHandle.addEventListener('');
+
+
 }
 
 
