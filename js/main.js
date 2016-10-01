@@ -29,6 +29,7 @@ var wordToGuessDiv = document.getElementById('word-to-guess');
 var startButtonHandle = document.getElementById('start-button');
 var inputHandle = document.getElementById('input-field');
 var guessesLeftHandle = document.getElementById('guesses-left');
+var lettersUsedHandle = document.getElementById('letter-used');
 
 // First I'm filtering the array to create an array with words that have
 // tree letters or more.
@@ -61,11 +62,12 @@ document.getElementById('start-button').addEventListener('click', generatePlayin
 // it's length, and create <span> tags for each letter with a class equal to the
 // letter that will occupy that <span>.
 var randomWord;
-var lettersGuessed = [];
+var lettersGuessedArray = [];
 
 function generatePlayingScreen(){
   randomWord = generateRandomWord(filteredWords).split('');
-  lettersGuessed = [];
+  lettersGuessedArray = [];
+  lettersUsedHandle.textContent = lettersGuessedArray.toString();
 
   while(wordToGuessDiv.lastChild){
     wordToGuessDiv.removeChild(wordToGuessDiv.lastChild);
@@ -106,8 +108,10 @@ function checkInput(event){
     }
   });
 
-  lettersGuessed.push(event.key);
-  console.log(lettersGuessed);
+  lettersGuessedArray.push(' ' + event.key);
+  lettersUsedHandle.textContent = lettersGuessedArray.sort().toString();
+  console.log(lettersGuessedArray.sort().toString());
+  // console.log(event.key + ' ');
 }
 
 
