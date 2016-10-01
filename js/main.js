@@ -61,9 +61,11 @@ document.getElementById('start-button').addEventListener('click', generatePlayin
 // it's length, and create <span> tags for each letter with a class equal to the
 // letter that will occupy that <span>.
 var randomWord;
+var lettersGuessed = [];
 
 function generatePlayingScreen(){
   randomWord = generateRandomWord(filteredWords).split('');
+  lettersGuessed = [];
 
   while(wordToGuessDiv.lastChild){
     wordToGuessDiv.removeChild(wordToGuessDiv.lastChild);
@@ -79,6 +81,7 @@ function generatePlayingScreen(){
     // newSpan.textContent = letter;
     wordToGuessDiv.appendChild(newSpan);
   });
+
 
   inputHandle.addEventListener('keydown', checkInput);
   return randomWord;
@@ -102,6 +105,9 @@ function checkInput(event){
     wordToGuessDiv.childNodes[index].textContent = letter;
     }
   });
+
+  lettersGuessed.push(event.key);
+  console.log(lettersGuessed);
 }
 
 
