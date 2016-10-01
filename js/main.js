@@ -83,14 +83,19 @@ function generatePlayingScreen(){
 
 // checkInput function that will iterate through the letters of the array and
 // check to see if the key pressed matches any of the letters in the word.
+// Use index and check the index against the index of the div array that has
+// all the spans.
 
 function checkInput(event){
   console.log(event.key);
+  randomWord.forEach(function(letter, index){
+    if(event.key == letter){
+    wordToGuessDiv.childNodes[index].textContent = letter;
+    }else{
+
+    }
+  });
 }
-  // randomWord.forEach(function(letter, index){
-//   //   if(keydownInput == letter){}else{}
-//   }
-// }
 
 
 
