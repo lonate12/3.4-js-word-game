@@ -28,6 +28,8 @@ function test(){
 var wordToGuessDiv = document.getElementById('word-to-guess');
 var startButtonHandle = document.getElementById('start-button');
 var inputHandle = document.getElementById('input-field');
+var guessesLeftHandle = document.getElementById('guesses-left');
+var guessesLeftNumber = guessesLeftHandle.textContent;
 
 // First I'm filtering the array to create an array with words that have
 // tree letters or more.
@@ -69,6 +71,8 @@ function generatePlayingScreen(){
   }
 
   startButtonHandle.textContent = 'Give me a new word';
+  guessesLeftNumber = '8';
+  inputHandle.value = "";
 
   randomWord.forEach(function(letter){
     var newSpan = document.createElement('span');
@@ -87,7 +91,7 @@ function generatePlayingScreen(){
 // all the spans.
 
 function checkInput(event){
-  console.log(event.key);
+  inputHandle.value = "";
   randomWord.forEach(function(letter, index){
     if(event.key == letter){
     wordToGuessDiv.childNodes[index].textContent = letter;
