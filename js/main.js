@@ -1,7 +1,9 @@
 (function(){
 'use strict';
 
-window.onload = setTimeout(function(){document.getElementById('my-master').play();}, 1000);
+// Intro music
+
+window.onload = setTimeout(function(){document.getElementById('my-master').play();}, 500);
 
 // Here are the 100 most popular words in English, as totally
 // stolen from here: https://gist.github.com/gravitymonkey/2406023
@@ -65,11 +67,15 @@ startButtonHandle.addEventListener('click', generatePlayingScreen);
 // letter that will occupy that <span>.
 var randomWord;
 var lettersGuessedArray = [];
+var victoryStandard;
 
 function generatePlayingScreen(){
   randomWord = generateRandomWord(filteredWords).split('');
+  victoryStandard = randomWord.length;
+
   lettersGuessedArray = [];
   lettersUsedHandle.textContent = lettersGuessedArray.toString();
+  document.getElementById('my-master').pause();
 
   document.querySelectorAll('.opening').forEach(function(element){
     element.className = 'play';
@@ -81,7 +87,7 @@ function generatePlayingScreen(){
 
   startButtonHandle.textContent = 'Give me a new word';
   guessesLeftHandle.textContent = '8';
-  inputHandle.value = "";
+  // inputHandle.value = "";
 
   randomWord.forEach(function(letter){
     var newSpan = document.createElement('span');
@@ -91,7 +97,10 @@ function generatePlayingScreen(){
   });
 
 
-  inputHandle.addEventListener('keydown', checkInput);
+  // inputHandle.addEventListener('keydown', checkInput);
+  window.addEventListener('keydown', checkInput);
+  window.addEventListener('keyup', checkVictory);
+
   return randomWord;
 }
 
@@ -101,29 +110,58 @@ function generatePlayingScreen(){
 // all the spans.
 
 function checkInput(event){
-  inputHandle.value = "";
+  // inputHandle.value = "";
 
   var newGuessesLeftNumber = guessesLeftHandle.textContent;
-  if(newGuessesLeftNumber === 0){
-    inputHandle.removeEventListener('keydown', checkInput);
-    document.getElementById('failure').play();
-  }
+  console.log('starting guesses: ' + newGuessesLeftNumber);
+  var acceptableKeys = /^[A-Za-z]/;
 
-  randomWord.forEach(function(letter, index){
-    if(event.key == letter){
-    wordToGuessDiv.childNodes[index].textContent = letter;
-  }else{
-    newGuessesLeftNumber -= 1;
-    guessesLeftHandle.textContent = newGuessesLeftNumber;
-  }
-  });
+  if(event.key.match(acceptableKeys) && lettersGuessedArray.indexOf(' ' + event.key) == -1){
 
-  lettersGuessedArray.push(' ' + event.key);
-  lettersUsedHandle.textContent = lettersGuessedArray.sort().toString();
-  console.log(lettersGuessedArray.sort().toString());
-  // console.log(event.key + ' ');
+    lettersGuessedArray.push(' ' + event.key);
+    lettersUsedHandle.textContent = lettersGuessedArray.sort().toString();
+    console.log(lettersGuessedArray.sort().toString());
+    // console.log(event.key + ' ');
+
+    randomWord.forEach(function(letter, index){
+      if(event.key == letter){
+      wordToGuessDiv.childNodes[index].textContent = letter;
+      }
+    });
+
+    if(randomWord.indexOf(event.key) == -1){
+      newGuessesLeftNumber -= 1;
+      guessesLeftHandle.textContent = newGuessesLeftNumber;
+      console.log(newGuessesLeftNumber);
+    }
+
+    if(newGuessesLeftNumber <= 1){
+      // inputHandle.removeEventListener('keydown', checkInput);
+      window.removeEventListener('keydown', checkInput);
+      document.getElementById('failure').play();
+      // inputHandle.className = 'opening';
+    }
+  }else {
+    document.getElementById('invalid-letter').play();
+  }
 }
 
+// checkVictory function will check the spans to see if there is text content
+// present. Each time the funciton will generate a victoryCheck variable. Once
+// the victoryCheck matches the victoryStandard then the audio clip for winning
+// will play and the person will have won the game.
 
+function checkVictory(){
+  var victoryCheck = 0;
+  wordToGuessDiv.childNodes.forEach(function(span){
+    if(span.textContent){
+      victoryCheck += 1;
+    }
+  });
+
+  if(victoryCheck == victoryStandard){
+    document.getElementById('winning-sound').play();
+  }
+}
 
 }());

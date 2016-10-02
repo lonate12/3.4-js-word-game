@@ -21,17 +21,18 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-        <button id="start-button" class="opening col-md-12">Begin!</button>
+        <button id="start-button" class="opening col-md-12">Click anywhere to begin!</button>
         <div id="word-to-guess" class="opening"></div>
-        <input type="text" id="input-field" name="name" value="" class="opening">
+        <!-- <input type="text" id="input-field" name="name" value="" class="opening"> -->
         <div id="info" class="opening">
           <h1 class="message">Guesses Left</h1>
           <h1 id="guesses-left">8</h1>
           <h1 class="message">Letters Used</h1>
           <h1 id="letter-used"></h1>
           <audio src="audio/failed.mp3" id="failure"></audio>
-          <audio src="audio/vader-my-master.wav" id="my-master"></audio>
+          <audio src="audio/star-wars-theme-song.mp3" id="my-master"></audio>
           <audio src="audio/win-darth-sidious.mp3" id="winning-sound"></audio>
+          <audio src="audio/blaster-firing.mp3" id="invalid-letter"></audio>
         </div>
       </div>
     </div>
