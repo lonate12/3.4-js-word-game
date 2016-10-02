@@ -1,5 +1,19 @@
+div.opening, input.opening {
+  display: none;
+}
+
+div.play, input.play {
+  display: block;
+}
+
+html {
+  height: 100%;
+}
+
 body {
-  background-color: orange;
+  height: 100%;
+  position: relative;
+  background-color: #000;
 }
 
 .word {
@@ -10,4 +24,25 @@ body {
   margin-right: 3px;
   font-size: 25px;
   display: inline-block;
+}
+
+.opening {
+  color: white;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url('../images/Star-Wars-background.jpg');
+  background-size: cover;
+  background-position: center center;
+  padding-top: 34%;
+  font-size: 68px;
+}
+
+.play {
+  display: block;
+  width: 40%;
+  margin: 0 auto;
 }

@@ -19,15 +19,19 @@
     <![endif]-->
   </head>
   <body>
-
-    <button id="start-button">Begin!</button>
-    <div id="word-to-guess"></div>
-    <input type="text" id="input-field" name="name" value="">
-    <div id="info">
-      <h1 class="message">Guesses Left</h1>
-      <h1 id="guesses-left">8</h1>
-      <h1 class="message">Letters Used</h1>
-      <h1 id="letter-used"></h1>
+    <div class="container-fluid">
+      <div class="row">
+        <button id="start-button" class="opening col-md-12">Begin!</button>
+        <div id="word-to-guess" class="opening"></div>
+        <input type="text" id="input-field" name="name" value="" class="opening">
+        <div id="info" class="opening">
+          <h1 class="message">Guesses Left</h1>
+          <h1 id="guesses-left">8</h1>
+          <h1 class="message">Letters Used</h1>
+          <h1 id="letter-used"></h1>
+          <audio src="audio/failed.mp3" id="failure"></audio>
+        </div>
+      </div>
     </div>
 
 

@@ -56,7 +56,7 @@ function generateRandomWord(array){
 // Now, I'm going to tie an event listener to a 'start button' that will let us
 // know when the player clicks the start button.
 
-document.getElementById('start-button').addEventListener('click', generatePlayingScreen);
+startButtonHandle.addEventListener('click', generatePlayingScreen);
 
 // This is the generatePlayingScreen function that will take the randomWord, find
 // it's length, and create <span> tags for each letter with a class equal to the
@@ -68,6 +68,10 @@ function generatePlayingScreen(){
   randomWord = generateRandomWord(filteredWords).split('');
   lettersGuessedArray = [];
   lettersUsedHandle.textContent = lettersGuessedArray.toString();
+
+  document.querySelectorAll('.opening').forEach(function(element){
+    element.className = 'play';
+  });
 
   while(wordToGuessDiv.lastChild){
     wordToGuessDiv.removeChild(wordToGuessDiv.lastChild);
@@ -100,7 +104,10 @@ function checkInput(event){
   var newGuessesLeftNumber = guessesLeftHandle.textContent;
   newGuessesLeftNumber -= 1;
   guessesLeftHandle.textContent = newGuessesLeftNumber;
-  console.log(newGuessesLeftNumber);
+  if(newGuessesLeftNumber === 0){
+    inputHandle.removeEventListener('keydown', checkInput);
+    document.getElementById('failure').play();
+  }
 
   randomWord.forEach(function(letter, index){
     if(event.key == letter){
