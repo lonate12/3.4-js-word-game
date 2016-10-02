@@ -1,6 +1,8 @@
 (function(){
 'use strict';
 
+window.onload = setTimeout(function(){document.getElementById('my-master').play();}, 1000);
+
 // Here are the 100 most popular words in English, as totally
 // stolen from here: https://gist.github.com/gravitymonkey/2406023
 var commonWords = [
@@ -102,8 +104,6 @@ function checkInput(event){
   inputHandle.value = "";
 
   var newGuessesLeftNumber = guessesLeftHandle.textContent;
-  newGuessesLeftNumber -= 1;
-  guessesLeftHandle.textContent = newGuessesLeftNumber;
   if(newGuessesLeftNumber === 0){
     inputHandle.removeEventListener('keydown', checkInput);
     document.getElementById('failure').play();
@@ -112,7 +112,10 @@ function checkInput(event){
   randomWord.forEach(function(letter, index){
     if(event.key == letter){
     wordToGuessDiv.childNodes[index].textContent = letter;
-    }
+  }else{
+    newGuessesLeftNumber -= 1;
+    guessesLeftHandle.textContent = newGuessesLeftNumber;
+  }
   });
 
   lettersGuessedArray.push(' ' + event.key);
