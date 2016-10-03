@@ -109,3 +109,19 @@ button.play {
     padding-bottom: 4px;
   }
 }
+
+#info.win, #info.lose,#word-to-guess.win, #word-to-guess.lose, {
+  display: none;
+}
+
+#you-lose, #you-win {
+  text-align: center;
+}
+
+.display {
+  display: block;
+}
+
+.hide {
+  display: none;
+}

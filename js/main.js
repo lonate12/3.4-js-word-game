@@ -10,7 +10,7 @@ window.onload = setTimeout(function(){document.getElementById('my-master').play(
 var commonWords = [
 "vader", "luke", "han", "chewbacca", "leia", "yoda", "lando", "anakin",
 "coruscant", "tatooine", "hoth", "naboo", "alderaan", "bespin", "dagobah",
-"geonosis", "jakku", "kashyyyk", "jedi", "sith" 
+"geonosis", "jakku", "kashyyyk", "jedi", "sith"
 ];
 
 // This is a test funciton for testing event listeners.
@@ -26,6 +26,9 @@ var startButtonHandle = document.getElementById('start-button');
 var inputHandle = document.getElementById('input-field');
 var guessesLeftHandle = document.getElementById('guesses-left');
 var lettersUsedHandle = document.getElementById('letter-used');
+var infoHandle = document.getElementById('info');
+var youLoseHandle = document.getElementById('you-lose');
+var youWinHandle = document.getElementById('you-win');
 
 // First I'm filtering the array to create an array with words that have
 // tree letters or more.
@@ -68,6 +71,11 @@ function generatePlayingScreen(){
   var currentNumberOfGames = document.getElementById('number-of-games-played');
   numberOfGames += 1;
   currentNumberOfGames.textContent = numberOfGames;
+
+  youLoseHandle.className = "hide";
+  youWinHandle.className = "hide";
+  wordToGuessDiv.className = 'play';
+  infoHandle.className = 'play';
 
   lettersGuessedArray = [];
   lettersUsedHandle.textContent = lettersGuessedArray.toString();
@@ -135,6 +143,9 @@ function checkInput(event){
       // inputHandle.removeEventListener('keydown', checkInput);
       window.removeEventListener('keydown', checkInput);
       document.getElementById('failure').play();
+      wordToGuessDiv.className = 'lose';
+      infoHandle.className = 'lose';
+      youLoseHandle.className = 'display';
       // inputHandle.className = 'opening';
     }
   }else {
@@ -159,6 +170,9 @@ function checkVictory(){
     document.getElementById('winning-sound').play();
     window.removeEventListener('keyup', checkVictory);
     window.removeEventListener('keydown', checkInput);
+    wordToGuessDiv.className = 'win';
+    infoHandle.className = 'win';
+    youWinHandle.className = 'display';
   }
 }
 

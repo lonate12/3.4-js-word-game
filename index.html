@@ -30,18 +30,20 @@
           Star Wars characters and planets!
         </button>
         <div id="word-to-guess" class="opening"></div>
+        <h1 class="hide" id="you-lose">you lose!</h1>
+        <h1 class="hide" id="you-win">you win!</h1>
         <!-- <input type="text" id="input-field" name="name" value="" class="opening"> -->
         <div id="info" class="opening">
-          <div class="opening" id="bottom-left">
-            <h1 id="guesses-left">8</h1>
-            <h1 class="message">Guesses Left</h1>
-          </div>
           <h1 class="message" id="letters-used">Letters used</h1>
           <h1 id="letter-used"></h1>
           <audio src="audio/failed.mp3" id="failure"></audio>
           <audio src="audio/star-wars-theme-song.mp3" id="my-master"></audio>
           <audio src="audio/win-darth-sidious.mp3" id="winning-sound"></audio>
           <audio src="audio/blaster-firing.mp3" id="invalid-letter"></audio>
+        </div>
+        <div class="opening" id="bottom-left">
+          <h1 id="guesses-left">8</h1>
+          <h1 class="message">Guesses Left</h1>
         </div>
       </div>
     </div>
