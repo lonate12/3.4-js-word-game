@@ -53,11 +53,13 @@ button.opening {
   bottom: 0;
   left: 0;
   right: 0;
+  // height: 100%;
+  // width: 100%;
   background-image: url('../images/Star-Wars-background.jpg');
   background-size: cover;
   background-position: center center;
   padding-top: 34%;
-  font-size: 68px;
+  font-size: 25px;
 }
 
 #info, #word-to-guess {
