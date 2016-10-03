@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+    <link href="https://fonts.googleapis.com/css?family=Ruslan+Display" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,13 +22,19 @@
   <body>
     <div class="container-fluid">
       <div class="row">
+        <div id="games-played">
+          <h3>number of games played</h3>
+          <h3 id="number-of-games-played">0</h3>
+        </div>
         <button id="start-button" class="opening col-md-12">Click anywhere to begin!</button>
         <div id="word-to-guess" class="opening"></div>
         <!-- <input type="text" id="input-field" name="name" value="" class="opening"> -->
         <div id="info" class="opening">
-          <h1 class="message">Guesses Left</h1>
-          <h1 id="guesses-left">8</h1>
-          <h1 class="message">Letters Used</h1>
+          <div class="opening" id="bottom-left">
+            <h1 id="guesses-left">8</h1>
+            <h1 class="message">Guesses Left</h1>
+          </div>
+          <h1 class="message" id="letters-used">Letters used</h1>
           <h1 id="letter-used"></h1>
           <audio src="audio/failed.mp3" id="failure"></audio>
           <audio src="audio/star-wars-theme-song.mp3" id="my-master"></audio>

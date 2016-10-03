@@ -68,10 +68,14 @@ startButtonHandle.addEventListener('click', generatePlayingScreen);
 var randomWord;
 var lettersGuessedArray = [];
 var victoryStandard;
+var numberOfGames = 0;
 
 function generatePlayingScreen(){
   randomWord = generateRandomWord(filteredWords).split('');
   victoryStandard = randomWord.length;
+  var currentNumberOfGames = document.getElementById('number-of-games-played');
+  numberOfGames += 1;
+  currentNumberOfGames.textContent = numberOfGames;
 
   lettersGuessedArray = [];
   lettersUsedHandle.textContent = lettersGuessedArray.toString();
@@ -135,7 +139,7 @@ function checkInput(event){
       console.log(newGuessesLeftNumber);
     }
 
-    if(newGuessesLeftNumber <= 1){
+    if(newGuessesLeftNumber <= 0){
       // inputHandle.removeEventListener('keydown', checkInput);
       window.removeEventListener('keydown', checkInput);
       document.getElementById('failure').play();
@@ -161,6 +165,8 @@ function checkVictory(){
 
   if(victoryCheck == victoryStandard){
     document.getElementById('winning-sound').play();
+    window.removeEventListener('keyup', checkVictory);
+    window.removeEventListener('keydown', checkInput);
   }
 }
 

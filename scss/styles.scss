@@ -1,9 +1,11 @@
-div.opening, input.opening {
-  display: none;
+@font-face {
+  font-family: 'star-wars';
+  src: url('../fonts/Starjedi.ttf');
 }
 
-div.play, input.play {
-  display: block;
+
+div.opening, input.opening {
+  display: none;
 }
 
 html {
@@ -14,19 +16,36 @@ body {
   height: 100%;
   position: relative;
   background-color: #000;
+  font-family: 'star-wars';
+  color: #FDE71D;
+}
+
+#games-played {
+  width: 20%;
+  margin-left: auto;
+  border: 2px solid #FDE71D;
+  border-radius: 4px;
+  margin-top: 10px;
+
+  h3 {
+    text-align: center;
+    margin: 0;
+    padding-bottom: 4px;
+  }
 }
 
 .word {
-  color: #fff;
+  color: #FDE71D;
+  font-family: 'star-wars';
   border-bottom: 2px solid #fff;
-  min-width: 20px;
-  min-height: 20px;
+  min-width: 60px;
+  min-height: 82px;
   margin-right: 3px;
-  font-size: 25px;
+  font-size: 56px;
   display: inline-block;
 }
 
-.opening {
+button.opening {
   color: white;
   display: block;
   position: absolute;
@@ -41,8 +60,50 @@ body {
   font-size: 68px;
 }
 
-.play {
+#info, #word-to-guess {
   display: block;
-  width: 40%;
-  margin: 0 auto;
+  // width: 40%;
+  // margin: 0 auto;
+  text-align: center;
+}
+
+#letters-used {
+  text-decoration: underline;
+}
+
+#word-to-guess {
+  margin-top: 40px;
+}
+
+button.play {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  background-color: #000;
+  border: 2px solid #FDE71D;
+  border-radius: 4px;
+  font-size: 30px;
+  color: #FDE71D;
+  font-family: 'star-wars';
+}
+
+#bottom-left {
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+  border: 2px solid #FDE71D;
+  border-radius: 4px;
+
+  #guesses-left {
+    text-align: center;
+  }
+
+  h1 {
+    margin: 0;
+    padding: 3px 6px 1px 6px;
+  }
+
+  :nth-child(2) {
+    padding-bottom: 4px;
+  }
 }
